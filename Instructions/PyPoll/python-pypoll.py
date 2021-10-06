@@ -1,13 +1,24 @@
-# Store the file path associated with the file (note the backslash may be OS specific)
-file = '../Resources/election_data.csv'
+# This will allow us to create file paths across operating systems
+import os
 
-# Open the file in "read" mode ('r') and store the contents in the variable "text"
-with open(file, 'r') as text:
+# Module for reading CSV files
+import csv
 
-    # This stores a reference to a file stream
-    print(text)
-        # Store all of the text inside a variable called "lines"
-    lines = text.read()
+csvpath = os.path.join( 'Resources', 'election_data.csv')
 
-    # Print the contents of the text file
-    print(lines + "yes and true")
+#print(csvpath)
+
+with open(csvpath) as csvfile:
+
+    # CSV reader specifies delimiter and variable that holds contents
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+    print(csvreader)
+
+    # Read the header row first (skip this step if there is now header)
+    csv_header = next(csvreader)
+    print(f"CSV Header: {csv_header}")
+
+    # Read each row of data after the header
+    for row in csvreader:
+        print(row)
