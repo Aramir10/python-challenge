@@ -42,23 +42,23 @@ with open(csvpath) as csvfile:
      #   print(row)
     for votes in csvreader:
         
-        candidate = votes[2]
+        contestant = votes[2]
         
         grandTotal = grandTotal + 1
         
-        if candidate == "Khan":
+        if contestant == "Khan":
             
             candidateKhan = candidateKhan + 1
         
-        if candidate == "Correy":
+        if contestant == "Correy":
            
             candidateCorrey = candidateCorrey + 1
        
-        if candidate == "Li":
+        if contestant == "Li":
            
             candidateLi = candidateLi + 1
         
-        if candidate == "O'Tooley":
+        if contestant == "O'Tooley":
            
             candidateOT = candidateOT + 1
             
@@ -68,13 +68,13 @@ with open(csvpath) as csvfile:
         
        #findout who is  the election winner 
        
-        for candidate, score in candidateData.items():
+        for contestant, score in candidateData.items():
             
             if score > voteTotalMax:
                
                 voteTotalMax = score
                
-                ElectionWinner = candidate
+                ElectionWinner = contestant
                 
                 #print statements with results
 
