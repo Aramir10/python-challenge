@@ -4,13 +4,21 @@ import csv
 
 #lists and variables for candidates, data & total
 
-candidates=[]
-grandTotal=[]
-percetTotal=[]
-total=0
+candidateKhan=0
+candidateCorrey=0
+candidateLi=0
+candidateOT=0
+grandTotal=0
+voteTotalMax=0
 
 #dictionary to store the name of the candidate & votes
-data ={}
+#data ={}
+
+# Function to get the percentage of votes for each candiate percetTotal
+
+def percetTotal (candidatePer, voterCount ):
+    return(100 * float(candidatePer)/float(voterCount))
+
 
 #path for election data csv
 csvpath = os.path.join( 'Resources', 'election_data.csv')
@@ -26,9 +34,67 @@ with open(csvpath) as csvfile:
    # print(csvreader)
 
     # Read the header row first (skip this step if there is now header)
-    csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+   # csv_header = next(csvreader)
+    #print(f"CSV Header: {csv_header}")
 
     # Read each row of data after the header
-    for row in csvreader:
-        print(row)
+    #for row in csvreader:
+     #   print(row)
+    for votes in csvreader:
+        
+        candidate = votes[2]
+        
+        grandTotal = grandTotal + 1
+        
+        if candidate == "Khan":
+            
+            candidateKhan = candidateKhan + 1
+        
+        if candidate == "Correy":
+           
+            candidateCorrey = candidateCorrey + 1
+       
+        if candidate == "Li":
+           
+            candidateLi = candidateLi + 1
+        
+        if candidate == "O'Tooley":
+           
+            candidateOT = candidateOT + 1
+            
+        candidateData = {"Khan": candidateKhan, "Correy": candidateCorrey, "Li": candidateLi, "O'Tooley": candidateOT}
+        
+       
+        
+       #findout who is  the election winner 
+       
+        for candidate, score in candidateData.items():
+            
+            if score > voteTotalMax:
+               
+                voteTotalMax = score
+               
+                ElectionWinner = candidate
+                
+                #print statements with results
+
+print('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-')  
+print(' ')              
+print('ELECTION RESULTS   ')
+print(' ')
+print('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-'+'\n')
+print(f'Total Votes: {grandTotal}'+'\n')
+
+print('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-')
+
+print(f'Candidate Khan: {percetTotal(candidateKhan,grandTotal):.3f}%  ({candidateKhan})')
+print(' ')
+print(f'Candidate Correy: {percetTotal(candidateCorrey,grandTotal):.3f}%  ({candidateCorrey})')
+print(' ')
+print(f'Candidate Li: {percetTotal(candidateLi,grandTotal):.3f}%  ({candidateLi})')
+print(' ')
+print(f'Candidate OTooley: {percetTotal(candidateOT,grandTotal):.3f}%  ({candidateOT})')
+print(' ')
+print('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-')
+print(f'The Election Winner is {ElectionWinner} !!!! ')
+print('-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-')
