@@ -40,6 +40,8 @@ with open(csvpath) as csvfile:
     # Read each row of data after the header
     #for row in csvreader:
      #   print(row)
+     
+     
     for votes in csvreader:
         
         contestant = votes[2]
@@ -75,6 +77,7 @@ with open(csvpath) as csvfile:
                 voteTotalMax = score
                
                 ElectionWinner = contestant
+                
                 
                 #print statements with results
 
