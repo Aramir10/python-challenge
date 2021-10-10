@@ -34,7 +34,7 @@ with open(csvpath, 'r') as fileReader:
         monthsTotal.append(index[0])
         
         
-        #Print results for total months 
+        #Print results for total months Average and profits
 
     print("Financial Analysis")
     print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
